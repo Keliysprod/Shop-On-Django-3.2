@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Добро Пожаловать
+{% endblock %}
+
+{% block content %}
+    <style>
+        html {
+            height: 100%;    
+        }
+        body {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        .wrapper {
+            min-height: 100%;
+            height: auto !important;
+        }
+        .footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+
+
+    <div class="container">
+        <div class="mx-auto">
+            <p class="fs-2 text-primary fw-bold text-center">
+                Крупнейшии Интернет-Магазин Железа*
+            </p>
+            <p class="fs-3 text-primary fw-bolder text-center">
+                Самые лучшие поставщики
+            </p>
+
+            <div class="text-center fw-light fs-5">
+                <a class="" href="{% url 'shop'%}">Начать Апгрейд*></a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="footer">
+        *железо - Коплектующие
+        *Апгрейд - Улучшения
+    </div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Успешно!
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="mx-auto">
+            <p>Вы успешно создали Аккаунт!</p>
+            <a href="{% url 'login' %}">Нажмите сюда чтобы войти</a>
+        </div>
+    </div>
+    
+{% endblock %}

@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Товар {{ object.name }}
+{% endblock %}
+
+
+{% block content %}
+<div class="album py-5 bg-light ">
+    <div class="container ">
+        <div class="box">
+            <div class="col">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <p class="card-text">
+                            <p class="text-primary">Фотографии:</p>
+                        </p>
+                        <img class="mx-auto d-block" width="50%"  src="{{ object.image.url }}">
+
+                        <p class="card-text text-center fs-1">
+                            <p class="text-primary "> Имя товара:</p> {{ object.name }}
+                        </p>
+                        
+                        {% if object.digital %}
+                            <p class="text-primary">
+                                Статус: <p class="text-success"> Это товар в наличии </p>
+                            </p>
+                        {% else %}
+                            <p class="text-danger">Статус: Этот товар временно нет в наличии</p>
+                        {% endif %}
+
+                        <p class="card-text">
+                            <p class="text-primary"> Цена за 1-шт: </p> {{ object.price}}$ Узбекских долларов
+                        </p>
+
+                        <p class="card-text">
+                            <p class="text-primary"> Описание:</p> {{object.description}}
+                        </p>
+
+                    </div>
+
+                    <div class="d-grid gap-2 col-6 mx-auto pb-5">
+                        <button class="btn btn-primary" type="button">Добавить в корзину</button>
+                        <button class="btn btn-success" type="button">Купить сразу</button>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container ">
+    <p class="fs-4">Комментарии({{object.priducts_comment.all.count}}):</p>
+    
+    
+    {% for product in product.priducts_comment.all %}
+        <div class="border border-info p-2 mb-3">
+            Автор:{{product.user}} <br>
+            {{product.text}} <br>
+        </div>
+    {% endfor %}
+    
+
+
+    {% if user.is_authenticated %}
+        <br>
+        <form action="" id="add_form" method="post">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button form="add_form" type="submit" class="btn btn-primary">Добавить</button>
+        </form>
+    {% else %}
+        <br>
+        <p class="text-danger fs-3 text-center">Зарегестируйтесь что-бы оставлять Комментарии</p>
+    {% endif %}
+</div>
+{% endblock %}
