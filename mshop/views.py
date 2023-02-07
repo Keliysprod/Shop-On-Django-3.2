@@ -10,7 +10,7 @@ from django.views.generic.edit import CreateView
 from django.contrib.auth.forms import UserCreationForm
 from django.views.generic.edit import FormMixin
 from django.urls import reverse_lazy
-
+from django.db.models import Q
 
 class ProductList(ListView):
     model=Product
@@ -63,3 +63,15 @@ def Success(request):
 
 def Homepage(request):
     return render(request, 'home.html')
+
+
+
+class SearchResultsView(ListView):
+    model = Product
+    template_name = "search_results.html"
+
+    def get_queryset(self): # new
+        return Product.objects.filter(
+            Q(name__icontains="Boston") | Q(state__icontains="NY")
+        )
+        
